@@ -4,33 +4,32 @@ extends CharacterBody2D
 const SPEED: float = 220.0
 const JUMP_FORCE: float = -400.0
 const GRAVITY: float = 1050.0
+const MAX_FALL_SPEED: float = 750.0
+#const PROJECTILE_SCENE: PackedScene = preload("res://scenes/Projectile.tscn")
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	_create_animations()
-	anim.play("Idle")
 
-func _physics_process(delta: float) -> void:
+func apply_gravity(delta: float) -> void:
 	if not is_on_floor():
-		velocity.y += GRAVITY * delta
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_FORCE
+		velocity.y = minf(velocity.y + GRAVITY * delta, MAX_FALL_SPEED)
+
+func horizontal_motion(delta: float) -> void:
 	var direction: float = Input.get_axis("left", "right")
-	velocity.x = direction * SPEED
+	velocity.x = move_toward(velocity.x, direction * SPEED, 1200.0 * delta)
 	if direction != 0.0:
 		sprite.flip_h = direction < 0.0
-	move_and_slide()
-	if Input.is_action_just_pressed("attack"):
-		anim.play("attack")
-	elif anim.current_animation != "attack" or not anim.is_playing():
-		if not is_on_floor():
-			anim.play("Jump" if velocity.y < 0 else "Fall")
-		elif direction != 0:
-			anim.play("Run")
-		else:
-			anim.play("Idle")
+
+func fire_projectile() -> void:
+	# Les projectiles sont intégrés dans la version 5.
+	pass
+
+func play_animation(name: String) -> void:
+	if anim.current_animation != name or not anim.is_playing():
+		anim.play(name)
 
 func _create_animations() -> void:
 	# 8 colonnes x 5 lignes: Idle, Run, Jump, Fall, attack.
