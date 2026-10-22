@@ -1,32 +1,46 @@
- Le Gardien du Champ
+Labo02 – Programmation de jeux vidéo
 
-Type de projet : Jeu vidéo 2D
-Moteur de jeu : Godot 4
-Langage de programmation : GDScript
-Genre : Action, plateforme et défense
 
-Description du projet
 
-Le Gardien du Champ est un jeu vidéo 2D dans lequel le joueur incarne un fermier chargé de protéger ses cultures contre des insectes envahisseurs.
+Description
 
-Le joueur doit se déplacer, sauter et attaquer les ennemis afin de défendre son champ, accumuler des points et progresser à travers différents niveaux. Au fur et à mesure de la progression, les ennemis deviennent plus difficiles à combattre.
 
-Le jeu comprend plusieurs fonctionnalités :
 
-- Personnage animé : déplacements, sauts, chutes et attaques.
-- Machine à états (FSM) : gestion des différents comportements du fermier.
-- Environnement 2D : plateformes, collisions, caméra et décor avec effet de parallaxe.
-- Ennemis : insectes animés avec déplacements et comportements programmés.
-- Système de combat : attaques, projectiles et gestion des dégâts.
-- Progression : niveaux, vies, protection des cultures et pointage.
-- Algorithmes : poursuite intelligente des ennemis et génération de vagues progressives.
-- Interface utilisateur : menu principal, instructions, paramètres et affichage des scores.
-- Audio : musique, effets sonores et réglages du volume.
-- Fin de partie : écrans de victoire et de défaite, possibilité de rejouer et classement des meilleurs scores.
-- Débogage : affichage des informations techniques pour faciliter les tests.
+Laboratoire réalisé avec Godot 4 et GDScript, portant sur les animations, les contrôles, la machine à états et le parallaxe dans un jeu 2D.
 
-Objectif du projet
 
-L'objectif est de développer un jeu 2D fonctionnel et interactif en appliquant les notions de programmation de jeux vidéo, notamment la programmation orientée objet, les machines à états, la gestion des collisions, les animations, les algorithmes et l'organisation du code.
 
-Le projet sera développé progressivement, avec un suivi des tâches dans un tableau Kanban GitHub et une gestion des versions avec Git.
+Fonctionnalités réalisées
+
+
+
+1\. Animations : gestion des animations du personnage.
+
+2\. Input Map : configuration des commandes et des déplacements.
+
+3\. Machine à états (FSM) : gestion des états et des transitions du personnage.
+
+4\. Parallaxe : création d'un décor avec effet de profondeur.
+
+5\. Code final : intégration des insectes, des projectiles et amélioration des scripts.
+
+
+
+Exécution
+
+
+
+Ouvrir le fichier "src/project.godot" avec Godot 4, puis lancer le jeu avec F5.
+
+
+
+Technologies
+
+
+
+\- Godot 4
+
+\- GDScript
+
+\- Git et GitHub
+
