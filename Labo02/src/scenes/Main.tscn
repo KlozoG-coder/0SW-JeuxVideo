@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/Insect.tscn" id="2"]
 [ext_resource type="Script" path="res://scripts/field.gd" id="3"]
 [ext_resource type="Texture2D" path="res://assets/sky.png" id="4"]
 [ext_resource type="Texture2D" path="res://assets/mountains.png" id="5"]
@@ -79,3 +80,17 @@ shape = SubResource("1")
 [node name="Player" parent="." instance=ExtResource("1")]
 position = Vector2(145, 154)
 
+[node name="Insect1" parent="." instance=ExtResource("2")]
+position = Vector2(430, 154)
+
+[node name="Insect2" parent="." instance=ExtResource("2")]
+position = Vector2(800, 154)
+
+[node name="Insect3" parent="." instance=ExtResource("2")]
+position = Vector2(1200, 154)
+
+[node name="Insect4" parent="." instance=ExtResource("2")]
+position = Vector2(1600, 154)
+
+[node name="Insect5" parent="." instance=ExtResource("2")]
+position = Vector2(1950, 154)

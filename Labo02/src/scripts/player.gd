@@ -5,7 +5,7 @@ const SPEED: float = 220.0
 const JUMP_FORCE: float = -400.0
 const GRAVITY: float = 1050.0
 const MAX_FALL_SPEED: float = 750.0
-#const PROJECTILE_SCENE: PackedScene = preload("res://scenes/Projectile.tscn")
+const PROJECTILE_SCENE: PackedScene = preload("res://scenes/Projectile.tscn")
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var anim: AnimationPlayer = $AnimationPlayer
@@ -24,8 +24,11 @@ func horizontal_motion(delta: float) -> void:
 		sprite.flip_h = direction < 0.0
 
 func fire_projectile() -> void:
-	# Les projectiles sont intégrés dans la version 5.
-	pass
+	var projectile := PROJECTILE_SCENE.instantiate()
+	get_tree().current_scene.add_child(projectile)
+	var facing: float = -1.0 if sprite.flip_h else 1.0
+	projectile.global_position = global_position + Vector2(26.0 * facing, -14.0)
+	projectile.direction = facing
 
 func play_animation(name: String) -> void:
 	if anim.current_animation != name or not anim.is_playing():
