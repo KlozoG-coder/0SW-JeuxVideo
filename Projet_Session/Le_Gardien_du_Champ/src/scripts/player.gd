@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 const SPEED: float = 220.0
-const JUMP_FORCE: float = -400.0
+const JUMP_FORCE: float = -520.0
 const GRAVITY: float = 1050.0
 const MAX_FALL_SPEED: float = 750.0
 const PROJECTILE_SCENE: PackedScene = preload("res://scenes/Projectile.tscn")
