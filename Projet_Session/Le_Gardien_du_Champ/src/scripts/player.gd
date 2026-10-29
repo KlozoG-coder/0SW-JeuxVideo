@@ -1,6 +1,12 @@
 class_name Player
 extends CharacterBody2D
 
+signal health_changed(remaining: int)
+signal player_defeated()
+
+var health: int = 3
+var invulnerability: float = 0.0
+
 const SPEED: float = 220.0
 const JUMP_FORCE: float = -520.0
 const GRAVITY: float = 1050.0
@@ -11,7 +17,25 @@ const PROJECTILE_SCENE: PackedScene = preload("res://scenes/Projectile.tscn")
 @onready var anim: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
+    add_to_group("player")
     _create_animations()
+
+func _physics_process(delta: float) -> void:
+    if invulnerability > 0.0:
+        invulnerability = maxf(0.0, invulnerability - delta)
+        sprite.modulate.a = 0.5 if int(Time.get_ticks_msec() / 100) % 2 == 0 else 1.0
+    else:
+        sprite.modulate.a = 1.0
+
+func take_damage() -> void:
+    if invulnerability > 0.0 or health <= 0:
+        return
+    health -= 1
+    invulnerability = 1.2
+    health_changed.emit(health)
+    if health <= 0:
+        player_defeated.emit()
+
 
 func apply_gravity(delta: float) -> void:
     if not is_on_floor():
