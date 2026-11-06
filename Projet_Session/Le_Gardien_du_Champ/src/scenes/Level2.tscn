@@ -1,0 +1,220 @@
+[gd_scene load_steps=21 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/Player.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/Insect.tscn" id="2"]
+[ext_resource type="Script" path="res://scripts/field.gd" id="3"]
+[ext_resource type="Texture2D" path="res://assets/jungle_sky.png" id="4"]
+[ext_resource type="Texture2D" path="res://assets/jungle_mountains.png" id="5"]
+[ext_resource type="Texture2D" path="res://assets/jungle_forest.png" id="6"]
+[ext_resource type="Texture2D" path="res://assets/jungle_trees.png" id="7"]
+[ext_resource type="Texture2D" path="res://assets/jungle_foreground.png" id="8"]
+
+[ext_resource type="Script" path="res://scripts/platform.gd" id="9"]
+[ext_resource type="Texture2D" path="res://assets/jungle_trees.png" id="10"]
+
+[ext_resource type="Script" path="res://scripts/game.gd" id="11"]
+
+[ext_resource type="Script" path="res://scripts/crop_zone.gd" id="12"]
+
+[ext_resource type="Script" path="res://scripts/jungle_field.gd" id="13"]
+[ext_resource type="PackedScene" path="res://scenes/menus/pause_menu.tscn" id="14"]
+
+[sub_resource type="RectangleShape2D" id="crop_shape"]
+size = Vector2(360, 90)
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(2400, 50)
+
+[sub_resource type="RectangleShape2D" id="platform_shape"]
+size = Vector2(145, 17)
+
+[node name="Main" type="Node2D"]
+level_number = 2
+script = ExtResource("11")
+
+[node name="ParallaxSky" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 0)
+repeat_size = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxSky"]
+texture_filter = 1
+texture = ExtResource("4")
+centered = false
+position = Vector2(0, -180)
+
+[node name="ParallaxMountains" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0)
+repeat_size = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxMountains"]
+texture_filter = 1
+texture = ExtResource("5")
+centered = false
+position = Vector2(0, -180)
+
+[node name="ParallaxForest" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.5, 0)
+repeat_size = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxForest"]
+texture_filter = 1
+texture = ExtResource("6")
+centered = false
+position = Vector2(0, -180)
+
+[node name="ParallaxClouds" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.35, 0)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(4, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxClouds"]
+texture_filter = 1
+texture = ExtResource("7")
+centered = false
+position = Vector2(0, -180)
+
+[node name="ParallaxForeground" type="Parallax2D" parent="."]
+z_index = -1
+scroll_scale = Vector2(1.2, 0)
+repeat_size = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxForeground"]
+texture_filter = 1
+texture = ExtResource("8")
+centered = false
+position = Vector2(0, -180)
+
+[node name="ParallaxVillage" type="Parallax2D" parent="."]
+z_index = -2
+scroll_scale = Vector2(0.7, 0)
+repeat_size = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxVillage"]
+texture_filter = 1
+texture = ExtResource("10")
+centered = false
+position = Vector2(0, -180)
+
+[node name="Field" type="Node2D" parent="."]
+script = ExtResource("13")
+
+[node name="Ground" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
+position = Vector2(1200, 215)
+shape = SubResource("1")
+
+[node name="Player" parent="." instance=ExtResource("1")]
+position = Vector2(145, 142)
+
+[node name="Insect1" parent="." instance=ExtResource("2")]
+position = Vector2(350, 154)
+
+[node name="Insect2" parent="." instance=ExtResource("2")]
+position = Vector2(740, 154)
+
+[node name="Insect3" parent="." instance=ExtResource("2")]
+position = Vector2(1080, 154)
+
+[node name="Insect4" parent="." instance=ExtResource("2")]
+position = Vector2(1510, 154)
+
+[node name="Insect5" parent="." instance=ExtResource("2")]
+position = Vector2(1910, 154)
+
+[node name="Insect6" parent="." instance=ExtResource("2")]
+position = Vector2(2120, 154)
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Platform1" type="StaticBody2D" parent="Platforms"]
+position = Vector2(350, 128)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("9")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform1"]
+shape = SubResource("platform_shape")
+one_way_collision = true
+
+[node name="Platform2" type="StaticBody2D" parent="Platforms"]
+position = Vector2(675, 70)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("9")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform2"]
+shape = SubResource("platform_shape")
+one_way_collision = true
+
+[node name="Platform3" type="StaticBody2D" parent="Platforms"]
+position = Vector2(1020, 125)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("9")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform3"]
+shape = SubResource("platform_shape")
+one_way_collision = true
+
+[node name="Platform4" type="StaticBody2D" parent="Platforms"]
+position = Vector2(1420, 78)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("9")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform4"]
+shape = SubResource("platform_shape")
+one_way_collision = true
+
+[node name="Platform5" type="StaticBody2D" parent="Platforms"]
+position = Vector2(1850, 123)
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("9")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform5"]
+shape = SubResource("platform_shape")
+one_way_collision = true
+
+[node name="Help" type="CanvasLayer" parent="."]
+
+[node name="Controls" type="Label" parent="Help"]
+offset_left = 14.0
+offset_top = 12.0
+offset_right = 690.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(1, 0.96, 0.8, 1)
+theme_override_font_sizes/font_size = 17
+text = "A/D ou fleches : marcher  |  Espace : sauter  |  J : lancer des graines"
+
+[node name="Status" type="Label" parent="Help"]
+offset_left = 14.0
+offset_top = 43.0
+offset_right = 520.0
+offset_bottom = 75.0
+theme_override_font_sizes/font_size = 19
+text = "Niveau : 2   Vies : 3/3   Cultures : 100%   Score : 0   Record : 0"
+
+[node name="GameMessage" type="Label" parent="Help"]
+visible = false
+offset_left = 160.0
+offset_top = 150.0
+offset_right = 820.0
+offset_bottom = 220.0
+horizontal_alignment = 1
+theme_override_colors/font_color = Color(1, 0.95, 0.6, 1)
+theme_override_font_sizes/font_size = 26
+
+[node name="CropZone" type="Area2D" parent="."]
+position = Vector2(1960, 151)
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("12")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CropZone"]
+shape = SubResource("crop_shape")
+
+[node name="PauseMenu" parent="." instance=ExtResource("14")]

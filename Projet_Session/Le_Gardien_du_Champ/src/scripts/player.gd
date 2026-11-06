@@ -31,6 +31,7 @@ func take_damage() -> void:
     if invulnerability > 0.0 or health <= 0:
         return
     health -= 1
+    AudioManager.play_sfx("hit")
     invulnerability = 1.2
     health_changed.emit(health)
     if health <= 0:
@@ -53,6 +54,7 @@ func fire_projectile() -> void:
     var facing: float = -1.0 if sprite.flip_h else 1.0
     projectile.global_position = global_position + Vector2(26.0 * facing, -14.0)
     projectile.direction = facing
+    AudioManager.play_sfx("shoot")
 
 func play_animation(name: String) -> void:
     if anim.current_animation != name or not anim.is_playing():

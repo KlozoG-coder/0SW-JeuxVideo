@@ -1,6 +1,7 @@
 extends BaseState
 
 func enter() -> void:
+    AudioManager.play_sfx("jump")
     player.velocity.y = Player.JUMP_FORCE
     player.play_animation("Jump")
 
