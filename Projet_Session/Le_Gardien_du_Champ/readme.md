@@ -1,4 +1,4 @@
-# 🌱 Le Gardien du Champ — Version 6b
+#  Le Gardien du Champ — Version 6b
 
 ## Présentation
 
