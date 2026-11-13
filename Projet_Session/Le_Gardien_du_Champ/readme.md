@@ -1,46 +1,59 @@
-# Le Gardien du Champ
-
-**Projet de session — Programmation de jeux vidéo**  
-**Session :** Automne 2026  
-**Moteur :** Godot 4  
-**Langage :** GDScript  
-**Version actuelle :** 2.0
+# 🌱 Le Gardien du Champ — Version 6b
 
 ## Présentation
 
-*Le Gardien du Champ* est un jeu de plateforme 2D qui se déroule dans un village africain. Le joueur incarne un fermier qui doit protéger ses cultures contre les insectes nuisibles. Le jeu est développé progressivement en appliquant les notions vues en cours.
+**Le Gardien du Champ** est un jeu de plateforme 2D développé avec **Godot 4 et GDScript**.
 
-## Fonctionnalités réalisées
+Le joueur incarne un cultivateur qui doit protéger ses cultures contre plusieurs vagues d'ennemis en leur tirant des graines.
 
-### Version 1 — Mise en place du jeu
-- Création du fermier et du décor du village africain.
-- Déplacements horizontaux, saut et gravité.
-- Gestion des collisions avec le sol.
+## Fonctionnalités
 
-### Version 2 — Amélioration du niveau
-- Ajout de cinq plateformes en bois.
-- Amélioration du décor et de l'environnement.
-- Ajustement de la hauteur du saut.
-- Conservation des fonctionnalités de la version 1.
+- Déplacement du cultivateur et saut.
+- Tir de graines pour attaquer les ennemis.
+- Ennemis qui menacent les cultures.
+- Système de vagues et de niveaux.
+- Gestion des vies du joueur et de la santé des cultures.
+- Score et meilleur score.
+- Écran de défaite et possibilité de rejouer.
+
+## Commandes
+
+| Touche | Action |
+|---|---|
+| A / D ou ← / → | Se déplacer |
+| Espace | Sauter |
+| J | Tirer des graines |
+| R | Rejouer après une défaite |
+
+## Niveaux
+
+- **Niveau 1 :** ennemis terrestres.
+- **Niveau 2 :** ennemis volants (prévu).
+- **Niveau 3 :** ennemis terrestres et volants (prévu).
+
+Chaque niveau comporte trois vagues d'ennemis.
+
+## Objectif du jeu
+
+Éliminer les ennemis avant qu'ils ne détruisent les cultures. Le joueur doit survivre aux vagues et terminer les niveaux.
+
+La partie est perdue lorsque toutes les cultures sont détruites ou que le cultivateur perd toutes ses vies.
 
 ## Technologies
 
-- **Godot 4** : moteur de jeu 2D.
-- **GDScript** : programmation des comportements.
-- **Git et GitHub** : gestion des versions du projet.
+- **Moteur :** Godot 4
+- **Langage :** GDScript
+- **Gestion de versions :** Git et GitHub
 
-## Installation et exécution
+## Améliorations prévues
 
-1. Télécharger ou cloner le dépôt.
-2. Ouvrir Godot 4 et importer `src/project.godot`.
-3. Lancer le jeu avec **F5**.
-
-## Prochaines étapes
-
-- Ajouter les insectes ennemis et les projectiles.
-- Intégrer les vies, le score et la protection des cultures.
-- Créer d'autres niveaux, des menus et des effets sonores.
+- Ajouter des ennemis volants.
+- Améliorer les tirs et les animations.
+- Embellir le village et les plantations.
+- Finaliser les menus et les effets sonores.
+- Ajouter la sauvegarde (*Save and Quit*).
 
 ---
 
-**État du projet :** Version 2 — Développement en cours.
+**Projet de session — Programmation de jeux vidéo**  
+**Version actuelle : 6b**

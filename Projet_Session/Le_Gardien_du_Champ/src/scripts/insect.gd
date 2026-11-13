@@ -17,46 +17,46 @@ var target: CharacterBody2D
 var brain: EnemyDecision = EnemyDecision.new()
 
 func _ready() -> void:
-    add_to_group("insects")
-    health = max_health
-    start_position = global_position
-    target = get_tree().get_first_node_in_group("player") as CharacterBody2D
-    body_entered.connect(_on_body_entered)
+	add_to_group("insects")
+	health = max_health
+	start_position = global_position
+	target = get_tree().get_first_node_in_group("player") as CharacterBody2D
+	body_entered.connect(_on_body_entered)
 
 func _physics_process(delta: float) -> void:
-    elapsed += delta
-    if not is_instance_valid(target):
-        target = get_tree().get_first_node_in_group("player") as CharacterBody2D
-    var target_x: float = global_position.x + 10000.0
-    var target_y: float = global_position.y + 10000.0
-    if is_instance_valid(target):
-        target_x = target.global_position.x
-        target_y = target.global_position.y
-    var choice: float = brain.decide(delta, global_position.x, start_position.x, target_x, target_y, global_position.y, detection_distance, patrol_distance, float(health) / float(maxi(max_health, 1)))
-    if brain.mode == EnemyDecision.Mode.PATROL:
-        if choice != 0.0:
-            patrol_direction = choice
-    else:
-        patrol_direction = choice
-    var speed: float = chase_speed if brain.mode != EnemyDecision.Mode.PATROL else patrol_speed
-    position.x += patrol_direction * speed * speed_multiplier * delta
-    position.y = start_position.y + sin(elapsed * 3.0) * 4.0
-    if patrol_direction != 0.0:
-        $Sprite2D.flip_h = patrol_direction < 0.0
+	elapsed += delta
+	if not is_instance_valid(target):
+		target = get_tree().get_first_node_in_group("player") as CharacterBody2D
+	var target_x: float = global_position.x + 10000.0
+	var target_y: float = global_position.y + 10000.0
+	if is_instance_valid(target):
+		target_x = target.global_position.x
+		target_y = target.global_position.y
+	var choice: float = brain.decide(delta, global_position.x, start_position.x, target_x, target_y, global_position.y, detection_distance, patrol_distance, float(health) / float(maxi(max_health, 1)))
+	if brain.mode == EnemyDecision.Mode.PATROL:
+		if choice != 0.0:
+			patrol_direction = choice
+	else:
+		patrol_direction = choice
+	var speed: float = chase_speed if brain.mode != EnemyDecision.Mode.PATROL else patrol_speed
+	position.x += patrol_direction * speed * speed_multiplier * delta
+	position.y = start_position.y + sin(elapsed * 3.0) * 4.0
+	if patrol_direction != 0.0:
+		$Sprite2D.flip_h = patrol_direction < 0.0
 
 func take_damage(amount: int = 1) -> void:
-    health -= amount
-    modulate = Color(1.0, 0.55, 0.55)
-    if health <= 0:
-        defeated.emit(100)
-        queue_free()
-    else:
-        get_tree().create_timer(0.12).timeout.connect(_restore_color)
+	health -= amount
+	modulate = Color(1.0, 0.55, 0.55)
+	if health <= 0:
+		defeated.emit(100)
+		queue_free()
+	else:
+		get_tree().create_timer(0.12).timeout.connect(_restore_color)
 
 func _restore_color() -> void:
-    if is_inside_tree():
-        modulate = Color.WHITE
+	if is_inside_tree():
+		modulate = Color.WHITE
 
 func _on_body_entered(body: Node2D) -> void:
-    if body.is_in_group("player") and body.has_method("take_damage"):
-        body.take_damage()
+	if body.is_in_group("player") and body.has_method("take_damage"):
+		body.take_damage()
